@@ -4,13 +4,24 @@ import Background from './components/Background';
 import WiktokApp from './components/wiktok/WiktokApp';
 
 function App() {
-  const [showWiktok, setShowWiktok] = useState(true); // Default to Wiktok view
+  const [showWiktok, setShowWiktok] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Check URL parameters for direct access to Wiktok mode
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('mode') === 'wiktok') {
+      setShowWiktok(true);
+    }
+  }, []);
+
+  // Fetch backend message when in standard view
   useEffect(() => {
     const fetchBackendMessage = async () => {
+      if (showWiktok) return; // Skip if Wiktok is shown
+      
       setLoading(true);
       setError(null);
 
@@ -33,97 +44,92 @@ function App() {
       }
     };
 
-    if (!showWiktok) {
-      fetchBackendMessage();
-    }
+    fetchBackendMessage();
   }, [showWiktok]);
+
+  // Handle switching to Wiktok mode
+  const handleShowWiktok = () => {
+    setShowWiktok(true);
+    // Update URL to reflect state without page reload
+    const url = new URL(window.location.href);
+    url.searchParams.set('mode', 'wiktok');
+    window.history.pushState({}, '', url);
+  };
+
+  // Handle exiting Wiktok mode
+  const handleExitWiktok = () => {
+    setShowWiktok(false);
+    // Update URL to reflect state without page reload
+    const url = new URL(window.location.href);
+    url.searchParams.delete('mode');
+    window.history.pushState({}, '', url);
+  };
 
   // Show the Wiktok interface
   if (showWiktok) {
-    return (
-      <>
-        <WiktokApp />
-        <button
-          onClick={() => setShowWiktok(false)}
-          style={{
-            position: 'fixed',
-            bottom: '20px',
-            right: '20px',
-            zIndex: 100,
-            backgroundColor: 'rgba(255, 255, 255, 0.2)',
-            border: 'none',
-            borderRadius: '50%',
-            width: '40px',
-            height: '40px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            backdropFilter: 'blur(5px)',
-          }}
-          aria-label="Switch to default view"
-        >
-          🏠
-        </button>
-      </>
-    );
+    return <WiktokApp onExit={handleExitWiktok} />;
   }
 
   // Show the default landing page
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        height: '100vh',
-        width: '100vw',
-        backgroundColor: '#f0f0f0',
-        gap: '1rem',
-      }}
-    >
+    <div className="landing-page">
       <Background />
-      <div>
-        <a href="https://mentat.ai" target="_blank">
+      
+      <header className="landing-header">
+        <a href="https://mentat.ai" target="_blank" rel="noopener noreferrer">
           <img src={mentatLogo} className="logo" alt="Mentat logo" />
         </a>
-      </div>
-      <h1>Mentat Template JS</h1>
-      <ul>
-        <li>Frontend: React, Vite, Vitest</li>
-        <li>Backend: Node.js, Express, Jest</li>
-        <li>Utilities: Typescript, ESLint, Prettier</li>
-      </ul>
-      <p>
-        <b>Message from server:</b>{' '}
-        {loading
-          ? 'Loading message from server...'
-          : error
-            ? `Error: ${error}`
-            : message
-              ? message
-              : 'No message from server'}
-      </p>
-
-      <p>Create a new GitHub issue at tag '@MentatBot' to get started.</p>
+        <h1>Mentat Template JS</h1>
+      </header>
       
-      <button
-        onClick={() => setShowWiktok(true)}
-        style={{
-          padding: '10px 20px',
-          margin: '20px 0',
-          backgroundColor: '#ee1d52',
-          color: 'white',
-          border: 'none',
-          borderRadius: '24px',
-          cursor: 'pointer',
-          fontWeight: 'bold',
-          transition: 'background-color 0.2s',
-        }}
-      >
-        Try Wiktok
-      </button>
+      <main className="landing-content">
+        <section className="tech-stack">
+          <h2>Built with</h2>
+          <ul>
+            <li>Frontend: React 19, TypeScript, Vite, Vitest</li>
+            <li>Backend: Node.js, Express, Jest</li>
+            <li>Utilities: TypeScript, ESLint, Prettier</li>
+          </ul>
+        </section>
+        
+        <section className="server-message">
+          <h2>Server Status</h2>
+          <p>
+            <b>Message from server:</b>{' '}
+            {loading
+              ? 'Loading message from server...'
+              : error
+                ? `Error: ${error}`
+                : message
+                  ? message
+                  : 'No message from server'}
+          </p>
+        </section>
+        
+        <section className="wiktok-promo">
+          <h2>Try our Wiktok Feature</h2>
+          <p>
+            Explore Wikipedia articles in a TikTok-style interface! 
+            Swipe through interesting knowledge with our infinite scroll.
+          </p>
+          <button
+            onClick={handleShowWiktok}
+            className="wiktok-button"
+            aria-label="Open Wiktok application"
+          >
+            Try Wiktok
+          </button>
+        </section>
+        
+        <section className="get-started">
+          <h2>Get Started with Mentat</h2>
+          <p>Create a new GitHub issue at tag '@MentatBot' to get started.</p>
+        </section>
+      </main>
+      
+      <footer className="landing-footer">
+        <p>Built with Mentat • {new Date().getFullYear()}</p>
+      </footer>
     </div>
   );
 }

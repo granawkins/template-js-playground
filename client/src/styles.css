@@ -7,4 +7,179 @@
 body {
   font-family: 'Inter', sans-serif;
   background-color: #f0f0f0;
+  line-height: 1.6;
+  color: #333;
+}
+
+a {
+  color: #ee1d52;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #ff375f;
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Focus styles for accessibility */
+a:focus, button:focus, [tabindex]:focus {
+  outline: 3px solid rgba(238, 29, 82, 0.5);
+  outline-offset: 2px;
+}
+
+/* Landing page styles */
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 2rem 1rem;
+  background-color: #f0f0f0;
+}
+
+.landing-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.landing-header img.logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.landing-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(45deg, #ee1d52, #3a1c71);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.landing-content {
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  z-index: 10;
+}
+
+.landing-content section {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.landing-content h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.tech-stack ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.tech-stack li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.tech-stack li:last-child {
+  border-bottom: none;
+}
+
+.wiktok-promo {
+  text-align: center;
+}
+
+.wiktok-button {
+  background-color: #ee1d52;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 24px;
+  margin-top: 1rem;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 12px rgba(238, 29, 82, 0.3);
+}
+
+.wiktok-button:hover {
+  background-color: #ff375f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(238, 29, 82, 0.4);
+}
+
+.wiktok-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(238, 29, 82, 0.3);
+}
+
+.server-message, .get-started {
+  line-height: 1.7;
+}
+
+.landing-footer {
+  margin-top: 3rem;
+  padding: 1rem;
+  color: #666;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Keyboard key styling */
+kbd {
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  color: #333;
+  display: inline-block;
+  font-size: 0.9rem;
+  line-height: 1;
+  padding: 4px 8px;
+  margin: 0 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .landing-header h1 {
+    font-size: 2rem;
+  }
+  
+  .landing-content section {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-header img.logo {
+    width: 80px;
+  }
+  
+  .landing-header h1 {
+    font-size: 1.75rem;
+  }
+  
+  .landing-content h2 {
+    font-size: 1.5rem;
+  }
+  
+  .landing-content section {
+    padding: 1.25rem;
+  }
 }
