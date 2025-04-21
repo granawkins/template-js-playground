@@ -187,7 +187,7 @@ class WikipediaService {
    * @param message Error context message
    * @param error The caught error
    */
-  private handleError(message: string, error: any): void {
+  private handleError(message: string, error: unknown): void {
     console.error(`${message}:`, error);
     if (axios.isAxiosError(error)) {
       console.error('API error details:', {

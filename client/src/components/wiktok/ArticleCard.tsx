@@ -99,7 +99,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
         month: 'short',
         day: 'numeric'
       }).format(date);
-    } catch (e) {
+    } catch {
       return null;
     }
   };

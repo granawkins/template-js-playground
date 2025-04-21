@@ -1,6 +1,12 @@
 import axios from 'axios';
 import wikipediaService from '../services/wikipediaService';
-import { WikipediaApiResponse } from '../types/wikipedia';
+import { WikipediaCache } from '../types/wikipedia';
+
+// Create a testing interface that exposes private members for testing
+interface WikipediaServiceForTesting {
+  cache: WikipediaCache;
+  clearCache: () => void;
+}
 
 // Mock axios
 jest.mock('axios');
@@ -10,7 +16,7 @@ describe('Wikipedia Service', () => {
   beforeEach(() => {
     jest.resetAllMocks();
     // Reset the cache by accessing private property (for testing purposes)
-    (wikipediaService as any).clearCache();
+    (wikipediaService as WikipediaServiceForTesting).clearCache();
   });
 
   describe('getRandomArticle', () => {
@@ -188,7 +194,7 @@ describe('Wikipedia Service', () => {
       await wikipediaService.getRandomArticles(1);
 
       // Force cache expiration
-      (wikipediaService as any).cache.lastFetched = new Date(0);
+      (wikipediaService as WikipediaServiceForTesting).cache.lastFetched = new Date(0);
 
       // Mock an API error
       mockedAxios.get.mockRejectedValueOnce(new Error('API Error'));
@@ -234,7 +240,7 @@ describe('Wikipedia Service', () => {
       wikipediaService.clearCache();
 
       // Should be empty now
-      expect((wikipediaService as any).cache.articles).toHaveLength(0);
+      expect((wikipediaService as WikipediaServiceForTesting).cache.articles).toHaveLength(0);
 
       // Setup for next API call
       mockedAxios.get.mockResolvedValueOnce({
