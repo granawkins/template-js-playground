@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import mentatLogo from '/mentat.png';
 import Background from './components/Background';
+import WiktokApp from './components/wiktok/WiktokApp';
 
 function App() {
+  const [showWiktok, setShowWiktok] = useState(true); // Default to Wiktok view
   const [message, setMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -31,9 +33,43 @@ function App() {
       }
     };
 
-    fetchBackendMessage();
-  }, []);
+    if (!showWiktok) {
+      fetchBackendMessage();
+    }
+  }, [showWiktok]);
 
+  // Show the Wiktok interface
+  if (showWiktok) {
+    return (
+      <>
+        <WiktokApp />
+        <button
+          onClick={() => setShowWiktok(false)}
+          style={{
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            zIndex: 100,
+            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            border: 'none',
+            borderRadius: '50%',
+            width: '40px',
+            height: '40px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            backdropFilter: 'blur(5px)',
+          }}
+          aria-label="Switch to default view"
+        >
+          🏠
+        </button>
+      </>
+    );
+  }
+
+  // Show the default landing page
   return (
     <div
       style={{
@@ -71,6 +107,23 @@ function App() {
       </p>
 
       <p>Create a new GitHub issue at tag '@MentatBot' to get started.</p>
+      
+      <button
+        onClick={() => setShowWiktok(true)}
+        style={{
+          padding: '10px 20px',
+          margin: '20px 0',
+          backgroundColor: '#ee1d52',
+          color: 'white',
+          border: 'none',
+          borderRadius: '24px',
+          cursor: 'pointer',
+          fontWeight: 'bold',
+          transition: 'background-color 0.2s',
+        }}
+      >
+        Try Wiktok
+      </button>
     </div>
   );
 }
