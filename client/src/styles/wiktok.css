@@ -1,0 +1,385 @@
+/* Wiktok - TikTok-style Wikipedia article viewer */
+
+/* Main container */
+.wiktok-app {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+  color: #fff;
+}
+
+/* Header */
+.wiktok-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+  z-index: 10;
+}
+
+.wiktok-logo {
+  font-size: 24px;
+  font-weight: bold;
+  background: linear-gradient(45deg, #69c9d0, #ee1d52);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.wiktok-controls button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.wiktok-controls button:hover {
+  opacity: 1;
+}
+
+/* Info Overlay */
+.wiktok-info-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  animation: fadeIn 0.3s ease;
+}
+
+.wiktok-info-content {
+  background-color: #fff;
+  color: #000;
+  padding: 24px;
+  border-radius: 12px;
+  max-width: 80%;
+  max-height: 80%;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.wiktok-info-content h2 {
+  margin-bottom: 16px;
+  color: #ee1d52;
+}
+
+.wiktok-info-content p {
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.wiktok-info-content button {
+  background-color: #ee1d52;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: background-color 0.2s;
+}
+
+.wiktok-info-content button:hover {
+  background-color: #ff375f;
+}
+
+/* Main content */
+.wiktok-content {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+/* Article Viewer - Vertical scroll container */
+.article-viewer {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar but keep functionality */
+.article-viewer::-webkit-scrollbar {
+  display: none;
+}
+
+.article-viewer {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Individual article card */
+.article-card {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  scroll-snap-align: start;
+  background-color: #000;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.article-card.active {
+  z-index: 2;
+}
+
+.article-card:not(.active) {
+  opacity: 0.7;
+}
+
+/* Article content */
+.article-content {
+  position: relative;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  margin-top: auto;
+  z-index: 5;
+}
+
+.article-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Article image */
+.article-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.article-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
+
+.article-image.loaded {
+  opacity: 1;
+}
+
+.article-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #222;
+  color: #aaa;
+  font-size: 18px;
+}
+
+/* Article excerpt */
+.article-excerpt {
+  margin-bottom: 16px;
+  font-size: 16px;
+  line-height: 1.5;
+  max-height: 30vh;
+  overflow-y: auto;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.article-excerpt p {
+  margin-bottom: 8px;
+}
+
+/* Article actions */
+.article-actions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.read-more-button {
+  background-color: #ee1d52;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 24px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  display: inline-block;
+}
+
+.read-more-button:hover, .read-more-button:focus {
+  background-color: #ff375f;
+}
+
+/* Loading indicator */
+.loading-indicator {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: #fff;
+}
+
+.loading-indicator.full-screen {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #000;
+  z-index: 100;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.spinner > div {
+  width: 12px;
+  height: 12px;
+  background-color: #ee1d52;
+  border-radius: 100%;
+  display: inline-block;
+  margin: 0 4px;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% { 
+    transform: scale(0);
+  } 40% { 
+    transform: scale(1.0);
+  }
+}
+
+/* Error display */
+.error-display {
+  padding: 24px;
+  margin: 20px;
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: 8px;
+  text-align: center;
+  color: #fff;
+}
+
+.error-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.error-display h3 {
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.error-display p {
+  margin-bottom: 16px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.retry-button {
+  background-color: #fff;
+  color: #000;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* End message */
+.end-message {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.refresh-button {
+  background-color: #ee1d52;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 12px;
+  transition: background-color 0.2s;
+}
+
+.refresh-button:hover {
+  background-color: #ff375f;
+}
+
+/* Loading trigger - invisible element for infinite scroll */
+.loading-trigger {
+  height: 50px;
+  padding: 10px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .article-title {
+    font-size: 20px;
+  }
+  
+  .article-excerpt {
+    font-size: 14px;
+    max-height: 25vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .article-content {
+    padding: 15px;
+  }
+  
+  .article-title {
+    font-size: 18px;
+  }
+  
+  .wiktok-info-content {
+    max-width: 90%;
+  }
+}
