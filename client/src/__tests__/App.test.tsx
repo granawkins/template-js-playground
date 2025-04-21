@@ -42,40 +42,41 @@ describe('App Component', () => {
     );
   });
 
-  it('renders Wiktok UI by default', () => {
+  it('renders landing page UI by default', () => {
     render(<App />);
-    // Check that Wiktok header is visible
-    expect(screen.getByText('Wiktok')).toBeInTheDocument();
-    // Home button should be visible
-    expect(screen.getByLabelText('Switch to default view')).toBeInTheDocument();
+    // Check that landing page header is visible
+    expect(screen.getByText('Mentat Template JS')).toBeInTheDocument();
+    // Should have a button to switch to Wiktok view
+    expect(screen.getByText('Try Wiktok')).toBeInTheDocument();
   });
 
-  it('can switch to standard view and back', async () => {
+  it('can switch to Wiktok view and back', async () => {
     render(<App />);
     
-    // Initially in Wiktok view
-    expect(screen.getByText('Wiktok')).toBeInTheDocument();
+    // Initially in landing page view
+    expect(screen.getByText('Mentat Template JS')).toBeInTheDocument();
     
-    // Switch to standard view
+    // Switch to Wiktok view
+    fireEvent.click(screen.getByText('Try Wiktok'));
+    
+    // Should now show Wiktok view
+    expect(screen.getByText('Wiktok')).toBeInTheDocument();
+    // Exit button should be visible
+    expect(screen.getByLabelText('Switch to default view')).toBeInTheDocument();
+    
+    // Switch back to landing page
     fireEvent.click(screen.getByLabelText('Switch to default view'));
     
-    // Should now show standard view
+    // Should be back in landing page view
     expect(screen.getByText('Mentat Template JS')).toBeInTheDocument();
-    expect(screen.getByText(/Frontend: React, Vite/)).toBeInTheDocument();
     
     // Should have API call in standard view
     await waitFor(() => {
       expect(screen.getByText('Test Message from API')).toBeInTheDocument();
     });
-    
-    // Can switch back to Wiktok
-    fireEvent.click(screen.getByText('Try Wiktok'));
-    
-    // Should be back in Wiktok view
-    expect(screen.getByText('Wiktok')).toBeInTheDocument();
   });
 
-  it('handles API error in standard view', async () => {
+  it('handles API error in landing page view', async () => {
     // Mock a failed API call
     (globalThis.fetch as unknown as Mock).mockRejectedValue(
       new Error('API Error')
@@ -83,8 +84,8 @@ describe('App Component', () => {
 
     render(<App />);
     
-    // Switch to standard view to trigger API call
-    fireEvent.click(screen.getByLabelText('Switch to default view'));
+    // Should be in landing page view by default
+    expect(screen.getByText('Mentat Template JS')).toBeInTheDocument();
 
     // Wait for the error message to appear with more generous timeout and interval
     await waitFor(

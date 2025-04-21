@@ -45,12 +45,26 @@ describe('ArticleViewer Component', () => {
   });
 
   it('fetches and displays articles on mount', async () => {
+    // Create a promise that we can control to better test loading states
+    let resolveArticles: (value: WikipediaArticle[]) => void;
+    const articlesPromise = new Promise<WikipediaArticle[]>(resolve => {
+      resolveArticles = resolve;
+    });
+
+    // Make the mock not resolve immediately
+    vi.mocked(wikipediaService.fetchRandomArticles).mockReturnValueOnce(articlesPromise);
+    
     await act(async () => {
       render(<ArticleViewer />);
     });
     
-    // Initially show loading indicator
+    // Now we can check for the loading indicator while the promise is still pending
     expect(screen.getByText('Loading articles...')).toBeInTheDocument();
+    
+    // Resolve the promise to let the component load articles
+    await act(async () => {
+      resolveArticles(mockArticles);
+    });
     
     // After loading, articles should be displayed
     await waitFor(() => {

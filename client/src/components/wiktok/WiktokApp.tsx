@@ -58,7 +58,7 @@ const WiktokApp: React.FC<WiktokAppProps> = ({
             <button
               className="exit-button"
               onClick={handleExit}
-              aria-label="Return to home page"
+              aria-label="Switch to default view"
             >
               🏠
             </button>
