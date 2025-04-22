@@ -1,5 +1,4 @@
 import request from 'supertest';
-import express from 'express';
 import { app } from '../app';
 
 // Instead of testing the actual app with supertest for the root route,
@@ -25,7 +24,15 @@ describe('API Endpoints', () => {
 
     // Manually check the app's stack for a * route handler (which handles the root path)
     if (app._router && app._router.stack) {
-      app._router.stack.forEach((layer: any) => {
+      // Define a specific type for Express router layers
+      interface RouterLayer {
+        route?: {
+          path: string;
+        };
+        name?: string;
+      }
+
+      app._router.stack.forEach((layer: RouterLayer) => {
         if (layer.route) {
           // Routes registered directly on the app
           if (layer.route.path === '*' || layer.route.path === '/') {
