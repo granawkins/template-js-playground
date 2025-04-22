@@ -10,6 +10,11 @@ type ApiResponse = {
 // Mock the fetch API
 globalThis.fetch = vi.fn() as unknown as typeof fetch;
 
+// Mock the components to avoid issues with background images and testing
+vi.mock('../components/Background', () => ({
+  default: () => <div data-testid="background-component"></div>,
+}));
+
 function mockFetchResponse(data: ApiResponse) {
   return {
     json: vi.fn().mockResolvedValue(data),
@@ -20,31 +25,35 @@ function mockFetchResponse(data: ApiResponse) {
 describe('App Component', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    // Default mock implementation
+    // Default mock implementation for buffalo fact
     (globalThis.fetch as unknown as Mock).mockResolvedValue(
-      mockFetchResponse({ message: 'Test Message from API' })
+      mockFetchResponse({ message: 'Test Buffalo Fact' })
     );
   });
 
-  it('renders App component correctly', () => {
+  it('renders Buffalo website components correctly', () => {
     render(<App />);
-    expect(screen.getByText('Mentat Template JS')).toBeInTheDocument();
-    expect(screen.getByText(/Frontend: React, Vite/)).toBeInTheDocument();
-    expect(screen.getByText(/Backend: Node.js, Express/)).toBeInTheDocument();
+    expect(screen.getByText('American Bison')).toBeInTheDocument();
     expect(
-      screen.getByText(/Utilities: Typescript, ESLint, Prettier/)
+      screen.getByText("North America's largest land mammal")
+    ).toBeInTheDocument();
+    expect(screen.getByText('About Buffalo')).toBeInTheDocument();
+    expect(screen.getByText('Conservation Status')).toBeInTheDocument();
+    expect(screen.getByText('Historical Significance')).toBeInTheDocument();
+    expect(
+      screen.getByText(/American Bison Educational Website/)
     ).toBeInTheDocument();
   });
 
-  it('loads and displays API message', async () => {
+  it('loads and displays buffalo fact from API', async () => {
     render(<App />);
 
     // Should initially show loading message
-    expect(screen.getByText(/Loading message from server/)).toBeInTheDocument();
+    expect(screen.getByText(/Loading fact about buffalo/)).toBeInTheDocument();
 
-    // Wait for the fetch to resolve and check if the message is displayed
+    // Wait for the fetch to resolve and check if the buffalo fact is displayed
     await waitFor(() => {
-      expect(screen.getByText('Test Message from API')).toBeInTheDocument();
+      expect(screen.getByText(/Test Buffalo Fact/)).toBeInTheDocument();
     });
 
     expect(globalThis.fetch).toHaveBeenCalledWith('/api');

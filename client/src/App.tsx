@@ -1,14 +1,18 @@
 import { useState, useEffect } from 'react';
-import mentatLogo from '/mentat.png';
 import Background from './components/Background';
+import Header from './components/Header';
+import AboutBuffalo from './components/AboutBuffalo';
+import ConservationStatus from './components/ConservationStatus';
+import HistoricalSignificance from './components/HistoricalSignificance';
+import Footer from './components/Footer';
 
 function App() {
-  const [message, setMessage] = useState<string | null>(null);
+  const [fact, setFact] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchBackendMessage = async () => {
+    const fetchServerFact = async () => {
       setLoading(true);
       setError(null);
 
@@ -20,7 +24,7 @@ function App() {
         }
 
         const data = await response.json();
-        setMessage(data.message);
+        setFact(data.message);
       } catch (err) {
         console.error('Error fetching data:', err);
         setError(
@@ -31,46 +35,38 @@ function App() {
       }
     };
 
-    fetchBackendMessage();
+    fetchServerFact();
   }, []);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        height: '100vh',
-        width: '100vw',
-        backgroundColor: '#f0f0f0',
-        gap: '1rem',
-      }}
-    >
+    <div className="app">
       <Background />
-      <div>
-        <a href="https://mentat.ai" target="_blank">
-          <img src={mentatLogo} className="logo" alt="Mentat logo" />
-        </a>
-      </div>
-      <h1>Mentat Template JS</h1>
-      <ul>
-        <li>Frontend: React, Vite, Vitest</li>
-        <li>Backend: Node.js, Express, Jest</li>
-        <li>Utilities: Typescript, ESLint, Prettier</li>
-      </ul>
-      <p>
-        <b>Message from server:</b>{' '}
-        {loading
-          ? 'Loading message from server...'
-          : error
-            ? `Error: ${error}`
-            : message
-              ? message
-              : 'No message from server'}
-      </p>
 
-      <p>Create a new GitHub issue at tag '@MentatBot' to get started.</p>
+      <Header />
+
+      <main>
+        <div className="container">
+          <div className="welcome-message">
+            {loading ? (
+              <p>Loading fact about buffalo...</p>
+            ) : error ? (
+              <p>Error: {error}</p>
+            ) : (
+              <p>
+                <strong>Buffalo Fact:</strong>{' '}
+                {fact ||
+                  'Did you know? Buffalo can run up to 35 mph and jump up to 6 feet vertically.'}
+              </p>
+            )}
+          </div>
+
+          <AboutBuffalo />
+          <ConservationStatus />
+          <HistoricalSignificance />
+        </div>
+      </main>
+
+      <Footer />
     </div>
   );
 }
