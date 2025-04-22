@@ -1,76 +1,72 @@
 import { useState, useEffect } from 'react';
-import mentatLogo from '/mentat.png';
+import Hero from './components/Hero';
+import BuffaloFacts from './components/BuffaloFacts';
+import BuffaloQuiz from './components/BuffaloQuiz';
+import BuffaloGallery from './components/BuffaloGallery';
+import Footer from './components/Footer';
 import Background from './components/Background';
 
 function App() {
-  const [message, setMessage] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  // State to track if the page has loaded for animations
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const fetchBackendMessage = async () => {
-      setLoading(true);
-      setError(null);
+    // Set loaded state after a short delay for animations
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 300);
 
-      try {
-        const response = await fetch('/api');
-
-        if (!response.ok) {
-          throw new Error(`HTTP error ${response.status}`);
-        }
-
-        const data = await response.json();
-        setMessage(data.message);
-      } catch (err) {
-        console.error('Error fetching data:', err);
-        setError(
-          err instanceof Error ? err.message : 'An unknown error occurred'
-        );
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBackendMessage();
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        height: '100vh',
-        width: '100vw',
-        backgroundColor: '#f0f0f0',
-        gap: '1rem',
-      }}
-    >
+    <div className={`buffalo-main ${isLoaded ? 'loaded' : ''}`}>
+      {/* Background stays for decorative elements */}
       <Background />
-      <div>
-        <a href="https://mentat.ai" target="_blank">
-          <img src={mentatLogo} className="logo" alt="Mentat logo" />
-        </a>
-      </div>
-      <h1>Mentat Template JS</h1>
-      <ul>
-        <li>Frontend: React, Vite, Vitest</li>
-        <li>Backend: Node.js, Express, Jest</li>
-        <li>Utilities: Typescript, ESLint, Prettier</li>
-      </ul>
-      <p>
-        <b>Message from server:</b>{' '}
-        {loading
-          ? 'Loading message from server...'
-          : error
-            ? `Error: ${error}`
-            : message
-              ? message
-              : 'No message from server'}
-      </p>
 
-      <p>Create a new GitHub issue at tag '@MentatBot' to get started.</p>
+      {/* Hero Section */}
+      <Hero />
+
+      {/* Main Content Sections */}
+      <main>
+        {/* Buffalo Facts Section */}
+        <section id="facts">
+          <BuffaloFacts />
+        </section>
+
+        {/* Buffalo Quiz Section */}
+        <section id="quiz">
+          <BuffaloQuiz />
+        </section>
+
+        {/* Buffalo Gallery Section */}
+        <section id="gallery">
+          <BuffaloGallery />
+        </section>
+
+        {/* Conservation Section - Simple placeholder */}
+        <section id="conservation">
+          <div className="conservation-container">
+            <h2>Buffalo Conservation</h2>
+            <p className="conservation-text">
+              Once nearly extinct with fewer than 1,000 individuals remaining,
+              the American bison has made a remarkable recovery thanks to
+              conservation efforts. Today, there are approximately 500,000 bison
+              across North America, though most are not pure wild bison but have
+              been crossbred with cattle.
+            </p>
+            <p className="conservation-text">
+              You can help support buffalo conservation by learning more about
+              these magnificent animals, visiting national parks where they roam
+              freely, and supporting organizations dedicated to their
+              preservation.
+            </p>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
