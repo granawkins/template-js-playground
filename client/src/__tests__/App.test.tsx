@@ -1,66 +1,52 @@
-import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
 import App from '../App';
 
-// Define types
-type ApiResponse = {
-  message: string;
-};
+// Mock the components to simplify testing
+vi.mock('../components/Hero', () => ({
+  default: () => <div data-testid="hero-component">Hero Component</div>,
+}));
 
-// Mock the fetch API
-globalThis.fetch = vi.fn() as unknown as typeof fetch;
+vi.mock('../components/BuffaloFacts', () => ({
+  default: () => (
+    <div data-testid="facts-component">Buffalo Facts Component</div>
+  ),
+}));
 
-function mockFetchResponse(data: ApiResponse) {
-  return {
-    json: vi.fn().mockResolvedValue(data),
-    ok: true,
-  };
-}
+vi.mock('../components/BuffaloQuiz', () => ({
+  default: () => <div data-testid="quiz-component">Buffalo Quiz Component</div>,
+}));
+
+vi.mock('../components/BuffaloGallery', () => ({
+  default: () => (
+    <div data-testid="gallery-component">Buffalo Gallery Component</div>
+  ),
+}));
+
+vi.mock('../components/Footer', () => ({
+  default: () => <div data-testid="footer-component">Footer Component</div>,
+}));
+
+vi.mock('../components/Background', () => ({
+  default: () => (
+    <div data-testid="background-component">Background Component</div>
+  ),
+}));
 
 describe('App Component', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-    // Default mock implementation
-    (globalThis.fetch as unknown as Mock).mockResolvedValue(
-      mockFetchResponse({ message: 'Test Message from API' })
-    );
-  });
-
-  it('renders App component correctly', () => {
-    render(<App />);
-    expect(screen.getByText('Mentat Template JS')).toBeInTheDocument();
-    expect(screen.getByText(/Frontend: React, Vite/)).toBeInTheDocument();
-    expect(screen.getByText(/Backend: Node.js, Express/)).toBeInTheDocument();
-    expect(
-      screen.getByText(/Utilities: Typescript, ESLint, Prettier/)
-    ).toBeInTheDocument();
-  });
-
-  it('loads and displays API message', async () => {
+  it('renders all buffalo website components correctly', () => {
     render(<App />);
 
-    // Should initially show loading message
-    expect(screen.getByText(/Loading message from server/)).toBeInTheDocument();
+    // Check if all components are rendered
+    expect(screen.getByTestId('hero-component')).toBeInTheDocument();
+    expect(screen.getByTestId('facts-component')).toBeInTheDocument();
+    expect(screen.getByTestId('quiz-component')).toBeInTheDocument();
+    expect(screen.getByTestId('gallery-component')).toBeInTheDocument();
+    expect(screen.getByTestId('footer-component')).toBeInTheDocument();
+    expect(screen.getByTestId('background-component')).toBeInTheDocument();
 
-    // Wait for the fetch to resolve and check if the message is displayed
-    await waitFor(() => {
-      expect(screen.getByText('Test Message from API')).toBeInTheDocument();
-    });
-
-    expect(globalThis.fetch).toHaveBeenCalledWith('/api');
-  });
-
-  it('handles API error', async () => {
-    // Mock a failed API call
-    (globalThis.fetch as unknown as Mock).mockRejectedValue(
-      new Error('API Error')
-    );
-
-    render(<App />);
-
-    // Wait for the error message to appear
-    await waitFor(() => {
-      expect(screen.getByText(/Error: API Error/)).toBeInTheDocument();
-    });
+    // Check for conservation section
+    expect(screen.getByText('Buffalo Conservation')).toBeInTheDocument();
+    expect(screen.getByText(/Once nearly extinct/)).toBeInTheDocument();
   });
 });
