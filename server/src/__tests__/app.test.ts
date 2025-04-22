@@ -1,7 +1,5 @@
 import request from 'supertest';
 import { app } from '../app';
-import path from 'path';
-import fs from 'fs';
 
 describe('API Endpoints', () => {
   it('should return a buffalo fact on GET /api', async () => {
