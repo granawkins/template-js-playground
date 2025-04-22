@@ -5,6 +5,41 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #f0f0f0;
+  font-family:
+    'Comic Sans MS', 'Chalkboard SE', 'Arial Rounded MT Bold', sans-serif;
+  background-color: #fff8e1;
+  overflow-x: hidden;
+}
+
+/* Server message specific styling */
+.server-message {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.server-message h3 {
+  font-size: 1.5rem;
+  color: #8b4513;
+  margin-bottom: 1rem;
+}
+
+.buffalo-footer {
+  text-align: center;
+  padding: 2rem 0;
+  color: #654321;
+  font-size: 1.1rem;
+}
+
+/* Adjust the background component for our buffalo theme */
+[class^='background-'] {
+  opacity: 0.3;
+  background-image: linear-gradient(
+    45deg,
+    rgba(139, 69, 19, 0.2),
+    rgba(139, 69, 19, 0.1)
+  );
 }
