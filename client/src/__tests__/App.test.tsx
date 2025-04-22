@@ -2,6 +2,27 @@ import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import App from '../App';
 
+// Mock the buffalo-themed components to simplify testing
+vi.mock('../components/HeroSection', () => ({
+  default: () => <div data-testid="hero-section">Hero Section Mock</div>,
+}));
+
+vi.mock('../components/BuffaloFacts', () => ({
+  default: () => <div data-testid="buffalo-facts">Buffalo Facts Mock</div>,
+}));
+
+vi.mock('../components/HabitatSection', () => ({
+  default: () => <div data-testid="habitat-section">Habitat Section Mock</div>,
+}));
+
+vi.mock('../components/TriviaSection', () => ({
+  default: () => <div data-testid="trivia-section">Trivia Section Mock</div>,
+}));
+
+vi.mock('../components/Background', () => ({
+  default: () => <div data-testid="background">Background Mock</div>,
+}));
+
 // Define types
 type ApiResponse = {
   message: string;
@@ -26,13 +47,19 @@ describe('App Component', () => {
     );
   });
 
-  it('renders App component correctly', () => {
+  it('renders buffalo-themed components correctly', () => {
     render(<App />);
-    expect(screen.getByText('Mentat Template JS')).toBeInTheDocument();
-    expect(screen.getByText(/Frontend: React, Vite/)).toBeInTheDocument();
-    expect(screen.getByText(/Backend: Node.js, Express/)).toBeInTheDocument();
+
+    // Check that all our buffalo components are rendered
+    expect(screen.getByTestId('hero-section')).toBeInTheDocument();
+    expect(screen.getByTestId('buffalo-facts')).toBeInTheDocument();
+    expect(screen.getByTestId('habitat-section')).toBeInTheDocument();
+    expect(screen.getByTestId('trivia-section')).toBeInTheDocument();
+    expect(screen.getByTestId('background')).toBeInTheDocument();
+
+    // Check for the footer
     expect(
-      screen.getByText(/Utilities: Typescript, ESLint, Prettier/)
+      screen.getByText(/Made with ❤️ by Buffalo Enthusiasts/)
     ).toBeInTheDocument();
   });
 
@@ -40,11 +67,15 @@ describe('App Component', () => {
     render(<App />);
 
     // Should initially show loading message
-    expect(screen.getByText(/Loading message from server/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/The buffalo are gathering your message/)
+    ).toBeInTheDocument();
 
     // Wait for the fetch to resolve and check if the message is displayed
     await waitFor(() => {
-      expect(screen.getByText('Test Message from API')).toBeInTheDocument();
+      expect(
+        screen.getByText(/🦬 Test Message from API 🦬/)
+      ).toBeInTheDocument();
     });
 
     expect(globalThis.fetch).toHaveBeenCalledWith('/api');

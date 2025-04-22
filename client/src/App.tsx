@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
-import mentatLogo from '/mentat.png';
+import HeroSection from './components/HeroSection';
+import BuffaloFacts from './components/BuffaloFacts';
+import HabitatSection from './components/HabitatSection';
+import TriviaSection from './components/TriviaSection';
 import Background from './components/Background';
+import './buffalo-styles.css';
 
 function App() {
   const [message, setMessage] = useState<string | null>(null);
@@ -35,42 +39,35 @@ function App() {
   }, []);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        height: '100vh',
-        width: '100vw',
-        backgroundColor: '#f0f0f0',
-        gap: '1rem',
-      }}
-    >
+    <div className="buffalo-app">
       <Background />
-      <div>
-        <a href="https://mentat.ai" target="_blank">
-          <img src={mentatLogo} className="logo" alt="Mentat logo" />
-        </a>
-      </div>
-      <h1>Mentat Template JS</h1>
-      <ul>
-        <li>Frontend: React, Vite, Vitest</li>
-        <li>Backend: Node.js, Express, Jest</li>
-        <li>Utilities: Typescript, ESLint, Prettier</li>
-      </ul>
-      <p>
-        <b>Message from server:</b>{' '}
-        {loading
-          ? 'Loading message from server...'
-          : error
-            ? `Error: ${error}`
-            : message
-              ? message
-              : 'No message from server'}
-      </p>
 
-      <p>Create a new GitHub issue at tag '@MentatBot' to get started.</p>
+      <div className="buffalo-content">
+        <HeroSection />
+
+        <BuffaloFacts />
+
+        <HabitatSection />
+
+        <TriviaSection />
+
+        <div className="server-message">
+          <h3>Message from the Buffalo Server</h3>
+          <p>
+            {loading
+              ? 'The buffalo are gathering your message...'
+              : error
+                ? `Error: ${error}`
+                : message
+                  ? `🦬 ${message} 🦬`
+                  : 'No message from the buffalo server'}
+          </p>
+        </div>
+
+        <footer className="buffalo-footer">
+          <p>Made with ❤️ by Buffalo Enthusiasts</p>
+        </footer>
+      </div>
     </div>
   );
 }
