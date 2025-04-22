@@ -28,23 +28,24 @@ describe('App Component', () => {
 
   it('renders App component correctly', () => {
     render(<App />);
-    expect(screen.getByText('Mentat Template JS')).toBeInTheDocument();
-    expect(screen.getByText(/Frontend: React, Vite/)).toBeInTheDocument();
-    expect(screen.getByText(/Backend: Node.js, Express/)).toBeInTheDocument();
-    expect(
-      screen.getByText(/Utilities: Typescript, ESLint, Prettier/)
-    ).toBeInTheDocument();
+    // Check for buffalo-themed content
+    expect(screen.getByText('The Majestic Buffalo')).toBeInTheDocument();
+    expect(screen.getByText('Buffalo Species')).toBeInTheDocument();
+    expect(screen.getByText('Conservation Status')).toBeInTheDocument();
+    expect(screen.getByText('Fascinating Buffalo Facts')).toBeInTheDocument();
   });
 
   it('loads and displays API message', async () => {
     render(<App />);
 
     // Should initially show loading message
-    expect(screen.getByText(/Loading message from server/)).toBeInTheDocument();
+    expect(screen.getByText(/Connecting to server/)).toBeInTheDocument();
 
     // Wait for the fetch to resolve and check if the message is displayed
     await waitFor(() => {
-      expect(screen.getByText('Test Message from API')).toBeInTheDocument();
+      expect(
+        screen.getByText(/Server status: Test Message from API/)
+      ).toBeInTheDocument();
     });
 
     expect(globalThis.fetch).toHaveBeenCalledWith('/api');
@@ -60,7 +61,9 @@ describe('App Component', () => {
 
     // Wait for the error message to appear
     await waitFor(() => {
-      expect(screen.getByText(/Error: API Error/)).toBeInTheDocument();
+      expect(
+        screen.getByText(/Connection error: API Error/)
+      ).toBeInTheDocument();
     });
   });
 });
