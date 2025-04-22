@@ -1,9 +1,7 @@
 import request from 'supertest';
 import { app } from '../app';
-import fs from 'fs';
-import path from 'path';
 
-// Mock fs.existsSync to make the server think the client files exist
+// Mock fs and path without importing them directly
 jest.mock('fs', () => ({
   ...jest.requireActual('fs'),
   existsSync: jest.fn().mockReturnValue(true),
@@ -36,9 +34,15 @@ describe('API Endpoints', () => {
     // Instead, we'll verify the route is set up by checking that the app has the
     // correct number of routes and that the route handling middleware exists
 
+    // Define a proper type for the layer object
+    interface RouterLayer {
+      route?: { path: string };
+      name?: string;
+    }
+
     // Count the routes in the app
     const routes = app._router.stack.filter(
-      (layer: any) => layer.route && layer.route.path === '*'
+      (layer: RouterLayer) => layer.route && layer.route.path === '*'
     );
 
     // Expect at least one route handler for the wildcard path
@@ -46,7 +50,7 @@ describe('API Endpoints', () => {
 
     // Additional check: Verify static middleware is configured
     const staticMiddleware = app._router.stack.filter(
-      (layer: any) => layer.name === 'serveStatic'
+      (layer: RouterLayer) => layer.name === 'serveStatic'
     );
 
     expect(staticMiddleware.length).toBeGreaterThan(0);
