@@ -17,7 +17,7 @@ function mockFetchResponse(data: ApiResponse) {
   };
 }
 
-describe('App Component', () => {
+describe('Buffalo Page', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     // Default mock implementation
@@ -26,21 +26,27 @@ describe('App Component', () => {
     );
   });
 
-  it('renders App component correctly', () => {
+  it('renders Buffalo page content correctly', () => {
     render(<App />);
-    expect(screen.getByText('Mentat Template JS')).toBeInTheDocument();
-    expect(screen.getByText(/Frontend: React, Vite/)).toBeInTheDocument();
-    expect(screen.getByText(/Backend: Node.js, Express/)).toBeInTheDocument();
     expect(
-      screen.getByText(/Utilities: Typescript, ESLint, Prettier/)
+      screen.getByText('The Majestic American Buffalo')
     ).toBeInTheDocument();
+    expect(
+      screen.getByText('A Symbol of North American Wilderness')
+    ).toBeInTheDocument();
+    expect(screen.getByAltText('American Buffalo (Bison)')).toBeInTheDocument();
+    expect(screen.getByText('Historical Significance')).toBeInTheDocument();
+    expect(screen.getByText('Conservation Success')).toBeInTheDocument();
+
+    // Buffalo facts section should be present (specific facts rotate, so we check for the heading)
+    expect(screen.getByText('Did You Know?')).toBeInTheDocument();
   });
 
   it('loads and displays API message', async () => {
     render(<App />);
 
     // Should initially show loading message
-    expect(screen.getByText(/Loading message from server/)).toBeInTheDocument();
+    expect(screen.getByText(/Connecting to server/)).toBeInTheDocument();
 
     // Wait for the fetch to resolve and check if the message is displayed
     await waitFor(() => {

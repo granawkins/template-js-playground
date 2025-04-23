@@ -1,0 +1,130 @@
+/* Buffalo Page Styles */
+.buffalo-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: #333;
+}
+
+.buffalo-title {
+  font-size: 2.5rem;
+  color: #503000;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.buffalo-subtitle {
+  font-size: 1.2rem;
+  color: #6b4d00;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.buffalo-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.buffalo-image-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buffalo-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.image-caption {
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: #666;
+  text-align: center;
+}
+
+.buffalo-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.buffalo-fact-card {
+  background-color: #f5e9d5;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.buffalo-fact-card h3 {
+  color: #6b4d00;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.buffalo-fact {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  min-height: 4.8rem; /* Keep height consistent for facts */
+}
+
+.fact-indicator {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ddd;
+}
+
+.indicator.active {
+  background-color: #6b4d00;
+}
+
+.buffalo-description {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.buffalo-description h2 {
+  color: #503000;
+  margin-bottom: 0.5rem;
+}
+
+.buffalo-description p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.buffalo-footer {
+  margin-top: 3rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  .buffalo-main {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .buffalo-image-section {
+    flex: 1;
+    margin-right: 2rem;
+  }
+
+  .buffalo-info {
+    flex: 1;
+  }
+}
