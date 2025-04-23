@@ -10,6 +10,11 @@ type ApiResponse = {
 // Mock the fetch API
 globalThis.fetch = vi.fn() as unknown as typeof fetch;
 
+// Mock the buffalo image import
+vi.mock('/buffalo.jpg', () => ({
+  default: 'mocked-buffalo-image-path',
+}));
+
 function mockFetchResponse(data: ApiResponse) {
   return {
     json: vi.fn().mockResolvedValue(data),
@@ -26,14 +31,16 @@ describe('App Component', () => {
     );
   });
 
-  it('renders App component correctly', () => {
+  it('renders Buffalo page correctly', () => {
     render(<App />);
-    expect(screen.getByText('Mentat Template JS')).toBeInTheDocument();
-    expect(screen.getByText(/Frontend: React, Vite/)).toBeInTheDocument();
-    expect(screen.getByText(/Backend: Node.js, Express/)).toBeInTheDocument();
+    expect(screen.getByText('American Bison (Buffalo)')).toBeInTheDocument();
+    expect(screen.getByText(/About the American Bison/)).toBeInTheDocument();
     expect(
-      screen.getByText(/Utilities: Typescript, ESLint, Prettier/)
+      screen.getByText(/The American bison \(Bison bison\)/)
     ).toBeInTheDocument();
+    expect(screen.getByText(/Conservation Status/)).toBeInTheDocument();
+    expect(screen.getByText(/Cultural Significance/)).toBeInTheDocument();
+    expect(screen.getByAltText('American Bison (Buffalo)')).toBeInTheDocument();
   });
 
   it('loads and displays API message', async () => {
