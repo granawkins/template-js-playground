@@ -6,5 +6,35 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #f0f0f0;
+  background-color: #f9f6f2;
+  color: #3d2c0e;
+}
+
+a {
+  color: #6b4d00;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #9b7d30;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.logo {
+  max-width: 80px;
+  margin-bottom: 1rem;
+}
+
+/* Adjust the background component to blend with our buffalo theme */
+@media (prefers-reduced-motion: no-preference) {
+  div[style*='position: fixed'] div {
+    opacity: 0.4;
+    filter: blur(100px);
+    transition: all 0.5s ease;
+  }
 }
