@@ -1,0 +1,61 @@
+# Jokes Collection
+
+## Programming Jokes
+1. Why do programmers prefer dark mode? Because light attracts bugs!
+2. How many programmers does it take to change a light bulb? None, that's a hardware problem.
+3. Why do Java developers wear glasses? Because they don't C#!
+4. Why did the developer go broke? Because he used up all his cache!
+5. Why was the JavaScript developer sad? Because he didn't know how to Object.
+6. A SQL query walks into a bar, walks up to two tables and asks, "Can I join you?"
+7. What did the router say to the doctor? "I'm feeling a bit disconnected."
+8. How many programmers does it take to screw in a light bulb? None, it's a hardware problem.
+9. Why did the programmer quit his job? Because he didn't get arrays.
+10. Why was the computer cold? It left its Windows open!
+
+## General Jokes
+1. Why don't scientists trust atoms? Because they make up everything!
+2. I'm reading a book on anti-gravity. It's impossible to put down!
+3. Did you hear about the mathematician who's afraid of negative numbers? He'll stop at nothing to avoid them.
+4. Parallel lines have so much in common. It's a shame they'll never meet.
+5. What do you call a parade of rabbits hopping backwards? A receding hare-line.
+6. I told my wife she was drawing her eyebrows too high. She looked surprised.
+7. What did one ocean say to the other ocean? Nothing, they just waved.
+8. How do you organize a space party? You planet.
+9. What's orange and sounds like a parrot? A carrot.
+10. Why can't you trust atoms? They make up everything!
+
+## Dad Jokes
+1. I told my wife she was drawing her eyebrows too high. She looked surprised.
+2. What do you call a fake noodle? An impasta!
+3. Why was the math book sad? Because it had too many problems.
+4. What's the best thing about Switzerland? I don't know, but the flag is a big plus.
+5. I'm on a seafood diet. I see food and I eat it.
+6. Why don't eggs tell jokes? They'd crack each other up.
+7. I used to be a baker, but I couldn't make enough dough.
+8. What do you call a fish wearing a crown? King cod!
+9. How do you make a tissue dance? You put a little boogie in it.
+10. Did you hear about the guy who invented Lifesavers? They say he made a mint.
+
+## Weather Jokes
+1. What's a tornado's favorite game? Twister!
+2. What does a cloud wear under his raincoat? Thunderwear.
+3. What did one raindrop say to the other? Two's company, three's a cloud.
+4. How do hurricanes see? With one eye.
+5. What falls but never gets hurt? The rain.
+6. What kind of shorts do clouds wear? Thunderwear!
+7. What happens when it rains cats and dogs? You might step in a poodle!
+8. Why did the woman go outdoors with her purse open? She expected some change in the weather.
+9. What did the evaporating raindrop say? I'm going to pieces.
+10. What's worse than raining cats and dogs? Hailing taxis!
+
+## Animal Jokes
+1. What do you call a bear with no teeth? A gummy bear!
+2. Why don't sharks eat clowns? Because they taste funny.
+3. What do you call a sleeping bull? A bulldozer.
+4. How do you count cows? With a cowculator.
+5. What do you call a fly without wings? A walk.
+6. Why can't you play poker in the jungle? Too many cheetahs.
+7. What did the buffalo say when his son left for college? Bison!
+8. What do you call an alligator in a vest? An investigator.
+9. Why did the chicken cross the playground? To get to the other slide.
+10. What do you call a duck that gets all A's? A wise quacker.
