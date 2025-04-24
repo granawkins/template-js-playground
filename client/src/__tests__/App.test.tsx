@@ -7,6 +7,11 @@ type ApiResponse = {
   message: string;
 };
 
+// Mock the JokeCard component
+vi.mock('../components/JokeCard', () => ({
+  default: () => <div data-testid="joke-card-mock">Joke Card Component</div>,
+}));
+
 // Mock the fetch API
 globalThis.fetch = vi.fn() as unknown as typeof fetch;
 
@@ -34,6 +39,8 @@ describe('App Component', () => {
     expect(
       screen.getByText(/Utilities: Typescript, ESLint, Prettier/)
     ).toBeInTheDocument();
+    // Check that JokeCard is rendered
+    expect(screen.getByTestId('joke-card-mock')).toBeInTheDocument();
   });
 
   it('loads and displays API message', async () => {

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import mentatLogo from '/mentat.png';
 import Background from './components/Background';
+import JokeCard from './components/JokeCard';
 
 function App() {
   const [message, setMessage] = useState<string | null>(null);
@@ -41,10 +42,11 @@ function App() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        height: '100vh',
+        minHeight: '100vh',
         width: '100vw',
         backgroundColor: '#f0f0f0',
         gap: '1rem',
+        padding: '20px 0',
       }}
     >
       <Background />
@@ -69,6 +71,8 @@ function App() {
               ? message
               : 'No message from server'}
       </p>
+
+      <JokeCard />
 
       <p>Create a new GitHub issue at tag '@MentatBot' to get started.</p>
     </div>
