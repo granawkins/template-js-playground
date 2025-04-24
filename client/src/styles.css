@@ -1,10 +1,339 @@
+/* Base reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Space+Grotesk:wght@300;500;700&display=swap');
+
+:root {
+  /* Color palette */
+  --color-bg: #0f0f1a;
+  --color-text: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.7);
+  --color-primary: #ff00a0;
+  --color-secondary: #00f0ff;
+  --color-accent: #ffdc00;
+  --color-dark: #0c0c14;
+  --color-card-bg: rgba(255, 255, 255, 0.08);
+
+  /* Animation timing */
+  --transition-fast: 0.2s;
+  --transition-normal: 0.3s;
+  --transition-slow: 0.5s;
+}
+
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #f0f0f0;
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 3rem;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 1.5rem;
+  animation: titleGradient 8s linear infinite;
+  transform-origin: left;
+}
+
+p {
+  margin-bottom: 1.2rem;
+}
+
+a {
+  color: var(--color-secondary);
+  text-decoration: none;
+  transition: all var(--transition-fast) ease;
+  position: relative;
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--color-secondary),
+    var(--color-primary)
+  );
+  transition: width var(--transition-normal) ease;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+/* Card styling */
+.card {
+  background: var(--color-card-bg);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  transition: all var(--transition-normal) ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Button styling */
+button {
+  background: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+  color: var(--color-text);
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast) ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--color-secondary),
+    var(--color-primary)
+  );
+  transition: all var(--transition-normal) ease;
+  z-index: -1;
+}
+
+button:hover::before {
+  left: 0;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* List styling */
+ul {
+  list-style-position: inside;
+  margin: 1.5rem 0;
+  text-align: left;
+}
+
+ul li {
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+ul li::before {
+  content: '•';
+  color: var(--color-primary);
+  font-weight: bold;
+  display: inline-block;
+  width: 1rem;
+  margin-left: -1rem;
+  font-size: 1.2rem;
+}
+
+/* Logo animation */
+.logo {
+  width: 100px;
+  height: 100px;
+  transition: all var(--transition-normal) ease;
+  animation: logoFloat 4s ease-in-out infinite;
+}
+
+.logo:hover {
+  transform: rotate(10deg) scale(1.1);
+  filter: drop-shadow(0 0 15px var(--color-primary));
+}
+
+/* Animations for background blobs */
+@keyframes morphBlob1 {
+  0% {
+    border-radius: 76% 24% 63% 37% / 42% 68% 32% 58%;
+  }
+  25% {
+    border-radius: 51% 49% 43% 57% / 52% 38% 62% 48%;
+  }
+  50% {
+    border-radius: 36% 64% 64% 36% / 72% 28% 72% 28%;
+  }
+  75% {
+    border-radius: 59% 41% 41% 59% / 65% 35% 65% 35%;
+  }
+  100% {
+    border-radius: 42% 58% 37% 63% / 61% 39% 61% 39%;
+  }
+}
+
+@keyframes morphBlob2 {
+  0% {
+    border-radius: 37% 63% 36% 64% / 72% 28% 67% 33%;
+  }
+  25% {
+    border-radius: 62% 38% 54% 46% / 32% 68% 42% 58%;
+  }
+  50% {
+    border-radius: 44% 56% 71% 29% / 58% 42% 52% 48%;
+  }
+  75% {
+    border-radius: 31% 69% 45% 55% / 37% 63% 30% 70%;
+  }
+  100% {
+    border-radius: 59% 41% 36% 64% / 42% 58% 62% 38%;
+  }
+}
+
+@keyframes morphBlob3 {
+  0% {
+    border-radius: 64% 36% 43% 57% / 31% 65% 35% 69%;
+  }
+  33% {
+    border-radius: 38% 62% 61% 39% / 59% 41% 69% 31%;
+  }
+  66% {
+    border-radius: 53% 47% 32% 68% / 48% 52% 43% 57%;
+  }
+  100% {
+    border-radius: 31% 69% 57% 43% / 69% 31% 38% 62%;
+  }
+}
+
+@keyframes morphBlob4 {
+  0% {
+    border-radius: 53% 47% 59% 41% / 44% 35% 65% 56%;
+  }
+  33% {
+    border-radius: 69% 31% 42% 58% / 31% 69% 43% 57%;
+  }
+  66% {
+    border-radius: 39% 61% 37% 63% / 54% 46% 29% 71%;
+  }
+  100% {
+    border-radius: 62% 38% 51% 49% / 43% 57% 64% 36%;
+  }
+}
+
+@keyframes floatUpDown {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--random-x, 100px), var(--random-y, -100px));
+    opacity: 0;
+  }
+}
+
+@keyframes titleGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes logoFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Create a shimmer effect */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  background-size: 200% 100%;
+  animation: shimmerEffect 2s infinite;
+}
+
+@keyframes shimmerEffect {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
 }
