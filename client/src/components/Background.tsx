@@ -1,24 +1,5 @@
 const Background = () => {
-  const splashStyles = {
-    position: 'absolute' as const,
-    borderRadius: '50%',
-    filter: 'blur(80px)',
-  };
-
-  const lightBlue = 'rgba(64,223,255,1)';
-  const darkBlue = 'rgba(0,21,199,0.6)';
-  const lightPink = 'rgba(255,0,228,0.8)';
-  const darkPink = 'rgba(154,0,255,0.4)';
-  const lightGreen = 'rgba(0,255,117,0.8)';
-  const darkGreen = 'rgba(0,95,138,0.6)';
-  const lightYellow = 'rgba(255,222,89,0.8)';
-  const darkYellow = 'rgba(255,87,51,0.5)';
-  const lightPurple = 'rgba(139,0,255,0.7)';
-  const darkPurple = 'rgba(0,59,255,0.4)';
-
-  const gradient = (light: string, dark: string) =>
-    `radial-gradient(circle, ${light} 0%, ${dark} 100%)`;
-
+  // Professional business background with subtle patterns and gradients
   return (
     <div
       style={{
@@ -29,58 +10,129 @@ const Background = () => {
         height: '100%',
         zIndex: 1,
         overflow: 'hidden',
-        opacity: 0.5,
         pointerEvents: 'none',
       }}
     >
+      {/* Main gradient background */}
       <div
         style={{
-          ...splashStyles,
-          width: '450px',
-          height: '450px',
-          background: gradient(lightBlue, darkBlue),
-          top: '10%',
-          left: '20%',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
+          opacity: 0.7,
         }}
       />
+
+      {/* Subtle grid pattern */}
       <div
         style={{
-          ...splashStyles,
-          width: '350px',
-          height: '350px',
-          background: gradient(lightPink, darkPink),
-          top: '40%',
-          right: '15%',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundImage: `
+            linear-gradient(rgba(26, 58, 108, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(26, 58, 108, 0.05) 1px, transparent 1px)
+          `,
+          backgroundSize: '20px 20px',
+          opacity: 0.6,
         }}
       />
+
+      {/* Top accent area */}
       <div
         style={{
-          ...splashStyles,
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '300px',
+          background:
+            'linear-gradient(180deg, rgba(26, 58, 108, 0.08) 0%, rgba(255, 255, 255, 0) 100%)',
+          opacity: 0.5,
+        }}
+      />
+
+      {/* Bottom accent area */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          width: '100%',
+          height: '250px',
+          background:
+            'linear-gradient(0deg, rgba(26, 58, 108, 0.05) 0%, rgba(255, 255, 255, 0) 100%)',
+          opacity: 0.6,
+        }}
+      />
+
+      {/* Abstract curved line elements - top right */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '5%',
+          right: '5%',
           width: '400px',
           height: '400px',
-          background: gradient(lightGreen, darkGreen),
-          bottom: '5%',
-          left: '30%',
+          borderRadius: '50%',
+          border: '1px solid rgba(62, 139, 201, 0.1)',
+          opacity: 0.5,
         }}
       />
       <div
         style={{
-          ...splashStyles,
+          position: 'absolute',
+          top: '8%',
+          right: '8%',
           width: '300px',
           height: '300px',
-          background: gradient(lightYellow, darkYellow),
-          top: '20%',
-          right: '25%',
+          borderRadius: '50%',
+          border: '1px solid rgba(62, 139, 201, 0.1)',
+          opacity: 0.5,
+        }}
+      />
+
+      {/* Abstract curved line elements - bottom left */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: '10%',
+          left: '5%',
+          width: '350px',
+          height: '350px',
+          borderRadius: '50%',
+          border: '1px solid rgba(231, 167, 51, 0.1)',
+          opacity: 0.5,
         }}
       />
       <div
         style={{
-          ...splashStyles,
-          width: '380px',
-          height: '380px',
-          background: gradient(lightPurple, darkPurple),
-          bottom: '15%',
-          left: '10%',
+          position: 'absolute',
+          bottom: '13%',
+          left: '8%',
+          width: '250px',
+          height: '250px',
+          borderRadius: '50%',
+          border: '1px solid rgba(231, 167, 51, 0.1)',
+          opacity: 0.5,
+        }}
+      />
+
+      {/* Accent diagonal line */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background:
+            'linear-gradient(135deg, rgba(26, 58, 108, 0.03) 0%, rgba(62, 139, 201, 0.03) 50%, rgba(231, 167, 51, 0.03) 100%)',
         }}
       />
     </div>
