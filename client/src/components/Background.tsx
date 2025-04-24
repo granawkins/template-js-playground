@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 const Background = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [scrollPosition, setScrollPosition] = useState(0);
 
   // Track mouse position for interactive elements
   useEffect(() => {
@@ -10,16 +9,10 @@ const Background = () => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY);
-    };
-
     window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('scroll', handleScroll);
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
