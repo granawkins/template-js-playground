@@ -1,0 +1,37 @@
+# JOKE COLLECTION
+
+## PROGRAMMING JOKES
+1. Why do programmers always mix up Halloween and Christmas? Because Oct 31 == Dec 25!
+2. A SQL query walks into a bar, walks up to two tables and asks, "Can I join you?"
+3. How many programmers does it take to change a light bulb? None, it's a hardware problem.
+4. Why do programmers prefer iOS development? Because the Swift is always right.
+5. What's a programmer's favorite place? The Foo Bar.
+6. I'd tell you a joke about UDP, but you might not get it.
+7. A programmer puts two glasses on their bedside table before going to sleep. A full one, in case they get thirsty, and an empty one, in case they don't.
+8. Why was the JavaScript developer sad? Because they didn't Node how to Express themselves.
+9. How do you tell HTML from HTML5? Try it out in Internet Explorer. Did it work? No? It's HTML5.
+10. Why did the functions stop calling each other? They had too many arguments.
+
+## GENERAL JOKES
+1. What do you call a parade of rabbits hopping backwards? A receding hare-line.
+2. What's the best thing about Switzerland? I don't know, but the flag is a big plus.
+3. Did you hear about the mathematician who's afraid of negative numbers? He'll stop at nothing to avoid them.
+4. Why don't scientists trust atoms? Because they make up everything.
+5. Parallel lines have so much in common. It's a shame they'll never meet.
+6. I was going to tell a time-traveling joke, but you didn't like it.
+7. What did the ocean say to the beach? Nothing, it just waved.
+8. Why did the scarecrow win an award? Because he was outstanding in his field.
+9. I told my wife she was drawing her eyebrows too high. She looked surprised.
+10. What do you call a fish with no eyes? A fsh.
+
+## DAD JOKES
+1. What do you call a factory that makes good products? A satisfactory.
+2. Did you hear about the restaurant on the moon? Great food, but no atmosphere.
+3. What do you call an elephant that doesn't matter? An irrelephant.
+4. I'm reading a book on anti-gravity. It's impossible to put down!
+5. What time did the man go to the dentist? Tooth hurt-y.
+6. I used to play piano by ear, but now I use my hands.
+7. Why don't eggs tell jokes? They'd crack each other up.
+8. I wouldn't buy anything with velcro. It's a total rip-off.
+9. What's the difference between a poorly dressed man on a trampoline and a well-dressed man on a trampoline? Attire.
+10. What did the janitor say when he jumped out of the closet? "Supplies!"
