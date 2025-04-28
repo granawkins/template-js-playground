@@ -35,43 +35,42 @@ function App() {
   }, []);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        height: '100vh',
-        width: '100vw',
-        backgroundColor: '#f0f0f0',
-        gap: '1rem',
-      }}
-    >
+    <>
       <Background />
-      <div>
-        <a href="https://mentat.ai" target="_blank">
-          <img src={mentatLogo} className="logo" alt="Mentat logo" />
-        </a>
-      </div>
-      <h1>Mentat Template JS</h1>
-      <ul>
-        <li>Frontend: React, Vite, Vitest</li>
-        <li>Backend: Node.js, Express, Jest</li>
-        <li>Utilities: Typescript, ESLint, Prettier</li>
-      </ul>
-      <p>
-        <b>Message from server:</b>{' '}
-        {loading
-          ? 'Loading message from server...'
-          : error
-            ? `Error: ${error}`
-            : message
-              ? message
-              : 'No message from server'}
-      </p>
+      <div className="art-deco-container">
+        <header className="art-deco-header">
+          <a href="https://mentat.ai" target="_blank">
+            <img src={mentatLogo} className="logo" alt="Mentat logo" />
+          </a>
+          <h1 className="art-deco-title">Mentat Template JS</h1>
+          <div className="art-deco-divider"></div>
+          <p className="art-deco-subtitle">A Full-Stack JavaScript Template</p>
+        </header>
 
-      <p>Create a new GitHub issue at tag '@MentatBot' to get started.</p>
-    </div>
+        <ul className="art-deco-feature-list">
+          <li>Frontend: React, Vite, Vitest</li>
+          <li>Backend: Node.js, Express, Jest</li>
+          <li>Utilities: Typescript, ESLint, Prettier</li>
+        </ul>
+
+        <div className="art-deco-message">
+          <p>
+            <b>Message from server:</b>{' '}
+            {loading
+              ? 'Loading message from server...'
+              : error
+                ? `Error: ${error}`
+                : message
+                  ? message
+                  : 'No message from server'}
+          </p>
+        </div>
+
+        <p className="art-deco-footer">
+          Create a new GitHub issue at tag '@MentatBot' to get started.
+        </p>
+      </div>
+    </>
   );
 }
 

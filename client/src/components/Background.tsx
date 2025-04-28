@@ -1,23 +1,16 @@
 const Background = () => {
-  const splashStyles = {
+  // Art Deco color palette
+  const gold = '#D4AF37';
+  const black = '#000000';
+  const navy = '#0F2656';
+  const teal = '#008080';
+  const burgundy = '#800020';
+
+  // Reusable pattern styles
+  const patternStyles = {
     position: 'absolute' as const,
-    borderRadius: '50%',
-    filter: 'blur(80px)',
+    pointerEvents: 'none' as const,
   };
-
-  const lightBlue = 'rgba(64,223,255,1)';
-  const darkBlue = 'rgba(0,21,199,0.6)';
-  const lightPink = 'rgba(255,0,228,0.8)';
-  const darkPink = 'rgba(154,0,255,0.4)';
-  const lightGreen = 'rgba(0,255,117,0.8)';
-  const darkGreen = 'rgba(0,95,138,0.6)';
-  const lightYellow = 'rgba(255,222,89,0.8)';
-  const darkYellow = 'rgba(255,87,51,0.5)';
-  const lightPurple = 'rgba(139,0,255,0.7)';
-  const darkPurple = 'rgba(0,59,255,0.4)';
-
-  const gradient = (light: string, dark: string) =>
-    `radial-gradient(circle, ${light} 0%, ${dark} 100%)`;
 
   return (
     <div
@@ -27,60 +20,155 @@ const Background = () => {
         left: 0,
         width: '100%',
         height: '100%',
-        zIndex: 1,
+        zIndex: -1,
         overflow: 'hidden',
-        opacity: 0.5,
+        backgroundColor: '#F5F2E9', // Light cream background
         pointerEvents: 'none',
       }}
     >
+      {/* Top border pattern */}
       <div
         style={{
-          ...splashStyles,
-          width: '450px',
-          height: '450px',
-          background: gradient(lightBlue, darkBlue),
-          top: '10%',
-          left: '20%',
+          ...patternStyles,
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '50px',
+          background: `repeating-linear-gradient(
+            90deg, 
+            ${gold}, 
+            ${gold} 20px, 
+            ${black} 20px, 
+            ${black} 40px
+          )`,
         }}
       />
+
+      {/* Bottom border pattern */}
       <div
         style={{
-          ...splashStyles,
-          width: '350px',
-          height: '350px',
-          background: gradient(lightPink, darkPink),
-          top: '40%',
-          right: '15%',
+          ...patternStyles,
+          bottom: 0,
+          left: 0,
+          width: '100%',
+          height: '50px',
+          background: `repeating-linear-gradient(
+            90deg, 
+            ${gold}, 
+            ${gold} 20px, 
+            ${black} 20px, 
+            ${black} 40px
+          )`,
         }}
       />
+
+      {/* Left side fan pattern */}
       <div
         style={{
-          ...splashStyles,
-          width: '400px',
-          height: '400px',
-          background: gradient(lightGreen, darkGreen),
-          bottom: '5%',
-          left: '30%',
-        }}
-      />
-      <div
-        style={{
-          ...splashStyles,
+          ...patternStyles,
+          top: '25%',
+          left: 0,
           width: '300px',
           height: '300px',
-          background: gradient(lightYellow, darkYellow),
-          top: '20%',
-          right: '25%',
+          backgroundImage: `conic-gradient(
+            from 0deg at 0% 50%,
+            ${gold} 0deg,
+            ${gold} 10deg,
+            transparent 10deg,
+            transparent 20deg,
+            ${navy} 20deg,
+            ${navy} 30deg,
+            transparent 30deg,
+            transparent 40deg
+          )`,
+          opacity: 0.6,
         }}
       />
+
+      {/* Right side fan pattern */}
       <div
         style={{
-          ...splashStyles,
-          width: '380px',
-          height: '380px',
-          background: gradient(lightPurple, darkPurple),
-          bottom: '15%',
-          left: '10%',
+          ...patternStyles,
+          top: '25%',
+          right: 0,
+          width: '300px',
+          height: '300px',
+          backgroundImage: `conic-gradient(
+            from 180deg at 100% 50%,
+            ${gold} 0deg,
+            ${gold} 10deg,
+            transparent 10deg,
+            transparent 20deg,
+            ${navy} 20deg,
+            ${navy} 30deg,
+            transparent 30deg,
+            transparent 40deg
+          )`,
+          opacity: 0.6,
+        }}
+      />
+
+      {/* Triangular pattern - top */}
+      <div
+        style={{
+          ...patternStyles,
+          top: '100px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '80%',
+          height: '60px',
+          backgroundImage: `linear-gradient(
+            -45deg, 
+            transparent 25%,
+            ${teal} 25%,
+            ${teal} 50%,
+            transparent 50%,
+            transparent 75%,
+            ${teal} 75%
+          )`,
+          backgroundSize: '40px 40px',
+          opacity: 0.3,
+        }}
+      />
+
+      {/* Triangular pattern - bottom */}
+      <div
+        style={{
+          ...patternStyles,
+          bottom: '100px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '80%',
+          height: '60px',
+          backgroundImage: `linear-gradient(
+            45deg, 
+            transparent 25%,
+            ${burgundy} 25%,
+            ${burgundy} 50%,
+            transparent 50%,
+            transparent 75%,
+            ${burgundy} 75%
+          )`,
+          backgroundSize: '40px 40px',
+          opacity: 0.3,
+        }}
+      />
+
+      {/* Center diamond pattern */}
+      <div
+        style={{
+          ...patternStyles,
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: '500px',
+          height: '500px',
+          backgroundImage: `repeating-conic-gradient(
+            ${gold} 0deg 15deg,
+            transparent 15deg 30deg
+          )`,
+          clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)',
+          opacity: 0.15,
         }}
       />
     </div>
