@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "dev": "bunx --bun vite",
+    "test": "bunx --bun vitest run",
+    "test:watch": "bunx --bun vitest",
+    "build": "bun run tsc -b && bunx --bun vite build",
+    "preview": "bunx --bun vite preview"
   },
   "dependencies": {
     "react": "^19.0.0",

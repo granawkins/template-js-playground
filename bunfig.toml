@@ -1,0 +1,13 @@
+# Bun configuration file
+
+[install]
+# Production dependencies go in node_modules, dev in node_modules/.dev
+production = false
+# Hoist all dependencies to the top-level
+hoist = true
+# Use exact versions rather than semver ranges
+exact = false
+
+[test]
+# Test environment configuration
+preload = []

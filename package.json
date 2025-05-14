@@ -2,13 +2,13 @@
   "name": "mentat-template-js",
   "type": "module",
   "scripts": {
-    "install": "npm install --prefix client && npm install --prefix server",
-    "dev": "concurrently \"npm run dev --prefix client\" \"npm run dev --prefix server\"",
-    "build": "npm run build --prefix client && npm run build --prefix server",
-    "start": "npm start --prefix server",
+    "postinstall": "bun install --prefix client && bun install --prefix server",
+    "dev": "concurrently \"bun run --cwd client dev\" \"bun run --cwd server dev\"",
+    "build": "bun run --cwd client build && bun run --cwd server build",
+    "start": "bun run --cwd server start",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "test": "npm test --prefix client && npm test --prefix server"
+    "test": "bun run --cwd client test && bun run --cwd server test"
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",

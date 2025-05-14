@@ -12,23 +12,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          node-version: '20'
-          # Removed npm caching as we don't track package-lock.json files
+          bun-version: latest
 
       - name: Install dependencies
-        run: npm install
+        run: bun install
 
       - name: Format code
-        run: npm run format
+        run: bun run format
 
       - name: Lint code
-        run: npm run lint
+        run: bun run lint
 
       - name: Build project
-        run: npm run build
+        run: bun run build
 
       - name: Run tests
-        run: npm test
+        run: bun run test
