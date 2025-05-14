@@ -1,6 +1,10 @@
-# Mentat Template JS
+# Mentat Template JS with Bun
 
-A full-stack JavaScript template project with React frontend and Express backend, both using TypeScript.
+A full-stack JavaScript template project with React frontend and Express backend, both using TypeScript. This version is optimized for [Bun](https://bun.sh), a fast all-in-one JavaScript runtime.
+
+## Prerequisites
+
+- [Bun](https://bun.sh) installed on your system
 
 ## Getting Started
 
@@ -17,7 +21,27 @@ A full-stack JavaScript template project with React frontend and Express backend
 
 5. If Mentat was installed properly, you should see an open GitHub issue in your new repository called 'MentatBot Setup'. This issue will guide you through advanced configuration.
 
+## Using Bun
+
+This project has been configured to use Bun instead of npm for improved performance. Here are the available commands:
+
+- `bun install` - Install dependencies for both client and server
+- `bun run dev` - Start both client and server in development mode with hot reloading
+- `bun run build` - Build both client and server for production
+- `bun run start` - Start the server in production mode
+- `bun run test` - Run tests for both client and server
+- `bun run lint` - Run ESLint to check code quality
+- `bun run format` - Run Prettier to format code
+
+### Advantages of Bun
+
+- Faster installation of dependencies
+- Faster startup times for development and production
+- Native TypeScript support without transpilation
+- Built-in test runner
+- Improved build performance
+
 You're all set! You can begin using Mentat by
 - Creating a new issue and tagging '@MentatBot'
 - Pushing PRs to your repository and having Mentat review them
-- Chatting wtih Mentat about your project from the [Mentat website](https://mentat.ai)
+- Chatting with Mentat about your project from the [Mentat website](https://mentat.ai)

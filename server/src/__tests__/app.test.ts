@@ -1,5 +1,9 @@
+import { describe, it, expect } from 'bun:test';
 import request from 'supertest';
 import { app } from '../app';
+
+// Import setup to ensure server is started before tests
+import './setup.bun';
 
 describe('API Endpoints', () => {
   it('should return welcome message on GET /api', async () => {
