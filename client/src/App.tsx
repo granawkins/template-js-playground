@@ -53,7 +53,7 @@ function App() {
           <img src={mentatLogo} className="logo" alt="Mentat logo" />
         </a>
       </div>
-      <h1>Mentat Template JS</h1>
+      <h1>Mentat BEMPLATE JS</h1>
       <ul>
         <li>Frontend: React, Vite, Vitest</li>
         <li>Backend: Node.js, Express, Jest</li>

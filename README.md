@@ -1,4 +1,4 @@
-# Mentat Template JS
+# Mentat BEMPLATE JS
 
 A full-stack JavaScript template project with React frontend and Express backend, both using TypeScript.
 
