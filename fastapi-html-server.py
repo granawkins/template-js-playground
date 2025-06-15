@@ -81,21 +81,24 @@ def get_html_content():
 """
 
 @app.get("/", response_class=HTMLResponse)
+@app.head("/", response_class=HTMLResponse)
 async def read_root():
     """Serve the main HTML page"""
-    print(f"{datetime.now().isoformat()} - GET / (FastAPI)")
+    print(f"{datetime.now().isoformat()} - GET/HEAD / (FastAPI)")
     return get_html_content()
 
 @app.get("/health")
+@app.head("/health")
 async def health_check():
     """Health check endpoint"""
-    print(f"{datetime.now().isoformat()} - GET /health (FastAPI)")
+    print(f"{datetime.now().isoformat()} - GET/HEAD /health (FastAPI)")
     return {"status": "healthy", "timestamp": datetime.now().isoformat()}
 
 @app.get("/info")
+@app.head("/info")
 async def server_info():
     """Server information endpoint"""
-    print(f"{datetime.now().isoformat()} - GET /info (FastAPI)")
+    print(f"{datetime.now().isoformat()} - GET/HEAD /info (FastAPI)")
     return {
         "server": "FastAPI HTML Server",
         "port": PORT,
