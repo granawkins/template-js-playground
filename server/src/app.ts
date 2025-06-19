@@ -7,6 +7,7 @@ import { Server } from 'socket.io';
 export const app = express();
 export const server = createServer(app);
 export const io = new Server(server, {
+  path: '/api/io',
   cors: {
     origin: ['http://localhost:5173', 'http://localhost:5000'], // Vite dev server and direct access
     methods: ['GET', 'POST'],

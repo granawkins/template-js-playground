@@ -43,7 +43,7 @@ function App() {
 
   // WebSocket connection
   useEffect(() => {
-    const newSocket = io();
+    const newSocket = io({ path: '/api/io' });
     setSocket(newSocket);
 
     newSocket.on('connect', () => {
