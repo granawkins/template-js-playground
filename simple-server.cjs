@@ -1,5 +1,7 @@
 const http = require('http');
 
+const startedAt = new Date().toISOString();
+
 const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
   res.end(`
@@ -37,7 +39,7 @@ const server = http.createServer((req, res) => {
       <div class="container">
         <h1>Simple Server on Port 5432</h1>
         <p>This is a basic HTTP server serving HTML content.</p>
-        <p>Server started at: ${new Date().toISOString()}</p>
+        <p>Server started at: ${startedAt}</p>
         <p>Request URL: ${req.url}</p>
         <p>Request Method: ${req.method}</p>
         <p>User Agent: ${req.headers['user-agent'] || 'Unknown'}</p>
