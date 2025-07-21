@@ -1,4 +1,4 @@
-const Background = () => {
+const TrumpBackground = () => {
   return (
     <div
       style={{
@@ -20,4 +20,4 @@ const Background = () => {
   );
 };
 
-export default Background;
+export default TrumpBackground;
