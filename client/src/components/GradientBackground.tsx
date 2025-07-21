@@ -1,4 +1,4 @@
-const Background = () => {
+const GradientBackground = () => {
   const splashStyles = {
     position: 'absolute' as const,
     borderRadius: '50%',
@@ -87,4 +87,4 @@ const Background = () => {
   );
 };
 
-export default Background;
+export default GradientBackground;
