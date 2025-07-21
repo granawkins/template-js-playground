@@ -11,7 +11,7 @@ const Background = () => {
         overflow: 'hidden',
         opacity: 0.3,
         pointerEvents: 'none',
-        backgroundImage: 'url(trump.jpg)',
+        backgroundImage: 'url(/trump.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
