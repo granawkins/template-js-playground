@@ -28,6 +28,7 @@ const Sudoku: React.FC = () => {
     const newSolution = [...userSolution];
     newSolution[index] = numValue;
     setUserSolution(newSolution);
+    setIsComplete(false); // Reset completion status when user makes changes
 
     // Check if puzzle is complete
     if (newSolution.every((cell) => cell !== null)) {
@@ -43,11 +44,11 @@ const Sudoku: React.FC = () => {
 
   const getCellValue = (index: number): string => {
     const value = userSolution[index];
-    return value === null ? '' : value.toString();
+    return value === null || value === undefined ? '' : value.toString();
   };
 
   const isCellReadOnly = (index: number): boolean => {
-    return puzzle[index] !== null;
+    return puzzle[index] !== null && puzzle[index] !== undefined;
   };
 
   const solvePuzzle = () => {
