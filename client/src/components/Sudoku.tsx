@@ -21,7 +21,11 @@ const Sudoku: React.FC<SudokuProps> = () => {
 
   const handleCellChange = (index: number, value: string) => {
     const numValue = value === '' ? null : parseInt(value);
-    if (numValue && (numValue < 1 || numValue > 9)) return;
+    if (
+      numValue !== null &&
+      (!Number.isInteger(numValue) || numValue < 1 || numValue > 9)
+    )
+      return;
 
     const newSolution = [...userSolution];
     newSolution[index] = numValue;
