@@ -45,7 +45,7 @@ const Sudoku: React.FC<SudokuProps> = () => {
 
   const getCellValue = (index: number): string => {
     const value = userSolution[index];
-    return value ? value.toString() : '';
+    return value === null ? '' : value.toString();
   };
 
   const isCellReadOnly = (index: number): boolean => {
@@ -53,7 +53,7 @@ const Sudoku: React.FC<SudokuProps> = () => {
   };
 
   const solvePuzzle = () => {
-    const solveResult = sudoku.solve([...puzzle]);
+    const solveResult = sudoku.solve([...userSolution]);
     if (solveResult.solved && solveResult.board) {
       setUserSolution(solveResult.board);
       setIsComplete(true);
