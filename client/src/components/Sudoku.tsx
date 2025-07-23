@@ -1,9 +1,7 @@
 import { useState, useEffect } from 'react';
 import * as sudoku from 'sudoku-core';
 
-interface SudokuProps {}
-
-const Sudoku: React.FC<SudokuProps> = () => {
+const Sudoku: React.FC = () => {
   const [puzzle, setPuzzle] = useState<(number | null)[]>([]);
   const [userSolution, setUserSolution] = useState<(number | null)[]>([]);
   const [isComplete, setIsComplete] = useState(false);
