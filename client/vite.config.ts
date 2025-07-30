@@ -11,5 +11,13 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
+    historyApiFallback: true,
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
   },
 });
