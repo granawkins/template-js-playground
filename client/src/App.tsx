@@ -71,6 +71,23 @@ function App() {
       </p>
 
       <p>Create a new GitHub issue at tag '@MentatBot' to get started.</p>
+
+      <div
+        style={{
+          marginTop: '2rem',
+          padding: '1rem',
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+          borderRadius: '8px',
+          maxWidth: '500px',
+          textAlign: 'center',
+        }}
+      >
+        <h3>🤖 Developer Joke of the Day</h3>
+        <p style={{ fontStyle: 'italic', margin: '1rem 0' }}>
+          "Why do programmers prefer dark mode?"
+        </p>
+        <p style={{ fontWeight: 'bold' }}>"Because light attracts bugs! 🐛"</p>
+      </div>
     </div>
   );
 }
