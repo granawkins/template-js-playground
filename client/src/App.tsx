@@ -6,6 +6,7 @@ function App() {
   const [message, setMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [loadTime] = useState(new Date().toLocaleString());
 
   useEffect(() => {
     const fetchBackendMessage = async () => {
@@ -71,6 +72,9 @@ function App() {
       </p>
 
       <p>Create a new GitHub issue at tag '@MentatBot' to get started.</p>
+      <p style={{ fontSize: '0.9em', color: '#666', marginTop: '2rem' }}>
+        Page loaded at: {loadTime}
+      </p>
     </div>
   );
 }
