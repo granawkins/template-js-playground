@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import mentatLogo from '/mentat.png';
 import Background from './components/Background';
+import Sudoku from './components/Sudoku';
 
 function App() {
   const [message, setMessage] = useState<string | null>(null);
@@ -71,6 +72,8 @@ function App() {
       </p>
 
       <p>Create a new GitHub issue at tag '@MentatBot' to get started.</p>
+
+      <Sudoku />
     </div>
   );
 }
