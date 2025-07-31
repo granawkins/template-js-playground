@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import mentatLogo from '/mentat.png';
 import Background from './components/Background';
+import Sudoku from './components/Sudoku';
 
 function App() {
   const [message, setMessage] = useState<string | null>(null);
@@ -71,6 +72,18 @@ function App() {
       </p>
 
       <p>Create a new GitHub issue at tag '@MentatBot' to get started.</p>
+
+      <div
+        style={{
+          marginTop: '40px',
+          padding: '20px',
+          backgroundColor: 'white',
+          borderRadius: '10px',
+          boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+        }}
+      >
+        <Sudoku difficulty="easy" />
+      </div>
     </div>
   );
 }
