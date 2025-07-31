@@ -102,7 +102,7 @@ const Sudoku: React.FC<SudokuProps> = ({ difficulty = 'easy' }) => {
           : 'white',
       color: isOriginal ? '#000' : '#666',
       cursor: isOriginal ? 'default' : 'pointer',
-      userSelect: 'none',
+      userSelect: 'none' as const,
     };
   };
 
