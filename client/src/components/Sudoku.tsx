@@ -16,7 +16,10 @@ const Sudoku: React.FC<SudokuProps> = ({ difficulty = 'easy' }) => {
   const [selectedCell, setSelectedCell] = useState<number | null>(null);
 
   useEffect(() => {
-    generateNewPuzzle();
+    const newBoard = generate(difficulty);
+    setBoard([...newBoard]);
+    setOriginalBoard([...newBoard]);
+    setSelectedCell(null);
   }, [difficulty]);
 
   const generateNewPuzzle = () => {
@@ -59,6 +62,7 @@ const Sudoku: React.FC<SudokuProps> = ({ difficulty = 'easy' }) => {
     const solvedResult = solve(board);
     if (solvedResult.board) {
       setBoard([...solvedResult.board]);
+      setOriginalBoard([...solvedResult.board]);
     }
   };
 
