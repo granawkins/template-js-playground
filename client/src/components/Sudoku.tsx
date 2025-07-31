@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { generate, solve, hint } from 'sudoku-core';
 
 type Board = (number | null)[];
@@ -9,8 +9,10 @@ interface SudokuProps {
 }
 
 const Sudoku: React.FC<SudokuProps> = ({ difficulty = 'easy' }) => {
-  const [board, setBoard] = useState<Board>([]);
-  const [originalBoard, setOriginalBoard] = useState<Board>([]);
+  const [board, setBoard] = useState<Board>(Array(81).fill(null));
+  const [originalBoard, setOriginalBoard] = useState<Board>(
+    Array(81).fill(null)
+  );
   const [selectedCell, setSelectedCell] = useState<number | null>(null);
 
   useEffect(() => {
@@ -60,15 +62,21 @@ const Sudoku: React.FC<SudokuProps> = ({ difficulty = 'easy' }) => {
     }
   };
 
-  const getCellStyle = (index: number, value: number | null) => {
+  const getCellStyle = (index: number) => {
     const row = Math.floor(index / 9);
     const col = index % 9;
     const isSelected = selectedCell === index;
     const isOriginal = originalBoard[index] !== null;
-    const isInSameBox =
-      selectedCell !== null &&
-      Math.floor(selectedCell / 9 / 3) === Math.floor(row / 3) &&
-      Math.floor((selectedCell % 9) / 3) === Math.floor(col / 3);
+
+    let isInSameBox = false;
+    if (selectedCell !== null) {
+      const selectedRow = Math.floor(selectedCell / 9);
+      const selectedCol = selectedCell % 9;
+      isInSameBox =
+        Math.floor(selectedRow / 3) === Math.floor(row / 3) &&
+        Math.floor(selectedCol / 3) === Math.floor(col / 3);
+    }
+
     const isInSameRowOrCol =
       selectedCell !== null &&
       (Math.floor(selectedCell / 9) === row || selectedCell % 9 === col);
@@ -133,7 +141,7 @@ const Sudoku: React.FC<SudokuProps> = ({ difficulty = 'easy' }) => {
         {board.map((value, index) => (
           <div
             key={index}
-            style={getCellStyle(index, value)}
+            style={getCellStyle(index)}
             onClick={() => handleCellClick(index)}
           >
             {value || ''}
