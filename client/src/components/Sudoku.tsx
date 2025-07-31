@@ -23,10 +23,9 @@ const Sudoku = () => {
     const col = index % 9;
 
     // Add borders to separate 3x3 boxes
-    const borderRight =
-      col === 2 || col === 5 ? '2px solid #333' : '1px solid #ccc';
-    const borderBottom =
-      row === 2 || row === 5 ? '2px solid #333' : '1px solid #ccc';
+    const baseBorder = '1px solid #ccc';
+    const borderRight = col === 2 || col === 5 ? '2px solid #333' : baseBorder;
+    const borderBottom = row === 2 || row === 5 ? '2px solid #333' : baseBorder;
 
     return (
       <div
@@ -37,7 +36,8 @@ const Sudoku = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          border: '1px solid #ccc',
+          borderTop: baseBorder,
+          borderLeft: baseBorder,
           borderRight,
           borderBottom,
           backgroundColor: value ? '#f9f9f9' : '#fff',
