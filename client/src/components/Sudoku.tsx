@@ -86,7 +86,6 @@ const Sudoku: React.FC<SudokuProps> = ({ difficulty = 'easy' }) => {
     return {
       width: '40px',
       height: '40px',
-      border: '1px solid #333',
       borderRight: col % 3 === 2 ? '3px solid #333' : '1px solid #333',
       borderBottom: row % 3 === 2 ? '3px solid #333' : '1px solid #333',
       borderTop: row === 0 ? '3px solid #333' : '1px solid #333',
@@ -103,7 +102,7 @@ const Sudoku: React.FC<SudokuProps> = ({ difficulty = 'easy' }) => {
           : 'white',
       color: isOriginal ? '#000' : '#666',
       cursor: isOriginal ? 'default' : 'pointer',
-      userSelect: 'none' as const,
+      userSelect: 'none',
     };
   };
 
