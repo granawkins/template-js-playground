@@ -8,3 +8,9 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: #f0f0f0;
 }
+
+.load-time {
+  font-size: 0.9em;
+  color: #666;
+  margin-top: 2rem;
+}
