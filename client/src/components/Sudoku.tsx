@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { generate, solve, hint } from 'sudoku-core';
-
-type Board = (number | null)[];
-type Difficulty = 'easy' | 'medium' | 'hard' | 'expert' | 'master';
+import type { Difficulty, Board } from 'sudoku-core/dist/types/types';
 
 interface SudokuProps {
   difficulty?: Difficulty;
@@ -53,7 +51,7 @@ const Sudoku: React.FC<SudokuProps> = ({ difficulty = 'easy' }) => {
 
   const getHint = () => {
     const hintResult = hint(board);
-    if (hintResult.board && hintResult.steps && hintResult.steps.length > 0) {
+    if (hintResult.board) {
       setBoard([...hintResult.board]);
     }
   };
