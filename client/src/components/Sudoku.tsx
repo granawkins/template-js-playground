@@ -50,14 +50,14 @@ const Sudoku: React.FC<SudokuProps> = ({ difficulty = 'easy' }) => {
 
   const getHint = () => {
     const hintResult = hint(board);
-    if (hintResult.solved && hintResult.steps.length > 0) {
+    if (hintResult.board && hintResult.steps && hintResult.steps.length > 0) {
       setBoard([...hintResult.board]);
     }
   };
 
   const solvePuzzle = () => {
     const solvedResult = solve(board);
-    if (solvedResult.solved) {
+    if (solvedResult.board) {
       setBoard([...solvedResult.board]);
     }
   };
