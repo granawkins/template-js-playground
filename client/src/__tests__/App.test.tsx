@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import App from '../App';
 
 // Define types
@@ -27,7 +28,11 @@ describe('App Component', () => {
   });
 
   it('renders App component correctly', () => {
-    render(<App />);
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
     expect(screen.getByText('Mentat Template JS')).toBeInTheDocument();
     expect(screen.getByText(/Frontend: React, Vite/)).toBeInTheDocument();
     expect(screen.getByText(/Backend: Node.js, Express/)).toBeInTheDocument();
@@ -37,7 +42,11 @@ describe('App Component', () => {
   });
 
   it('loads and displays API message', async () => {
-    render(<App />);
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
 
     // Should initially show loading message
     expect(screen.getByText(/Loading message from server/)).toBeInTheDocument();
@@ -56,7 +65,11 @@ describe('App Component', () => {
       new Error('API Error')
     );
 
-    render(<App />);
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
 
     // Wait for the error message to appear
     await waitFor(() => {
