@@ -60,7 +60,7 @@ describe('App Component', () => {
 
     // Wait for the error message to appear
     await waitFor(() => {
-      expect(screen.getByText(/Error: API Error/)).toBeInTheDocument();
+      expect(screen.getByText(/ERROR: API Error/)).toBeInTheDocument();
     });
   });
 });
