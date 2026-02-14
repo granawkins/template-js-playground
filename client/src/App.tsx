@@ -41,8 +41,8 @@ function App() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        height: '100vh',
-        width: '100vw',
+        height: '100%',
+        width: '100%',
         backgroundColor: '#f0f0f0',
         gap: '1rem',
       }}
